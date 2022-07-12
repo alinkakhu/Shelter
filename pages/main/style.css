@@ -392,3 +392,66 @@ justify-content: center;
     padding-top: 80px;
     padding-bottom: 100px;
 }
+
+.donation-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.donation-information{
+    max-width: 380px;
+}
+.donation-title{
+    font-family: 'Georgia', sans-serif;
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 130%;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.06em;
+        color: rgba(84, 84, 84, 1);
+        width: 300px;
+
+padding-bottom: 20px;
+
+}
+.donation-paragraph{
+font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    padding-bottom: 20px;
+}
+.donation-card{
+    display: flex;
+background-color: rgba(241, 205, 179, 1);
+align-items: center;
+padding: 10px 15px;
+gap: 10px;
+border-radius: 9px;
+width: 350px;
+
+
+}
+.card-number{
+font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 115%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.06em;
+    color: rgba(84, 84, 84, 1);
+
+
+}
+.legal{
+    color: rgba(178, 178, 178, 1);
+    font-family: 'Arial', sans-serif;
+font-style: italic;
+font-weight: 400;
+font-size: 12px;
+line-height: 150%;
+padding-top: 20px;
+}
