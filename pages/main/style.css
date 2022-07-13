@@ -32,16 +32,23 @@ img {
 }
 
 /* logo and navigation */
+@media screen and (min-width: 768px) {
 
-.header-menu{
+    .header-menu {
+
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 30px 40px;
+    }
+}
+/* .header-menu{
     display: flex;
 justify-content: space-between;
    flex-wrap: wrap;
 padding: 60px 40px;
 
-
-
-}
+} */
 .nav-list{
     display: flex;
 justify-content: center;

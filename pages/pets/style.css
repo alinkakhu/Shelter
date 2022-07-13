@@ -1,0 +1,336 @@
+body{
+    min-width: 320px;
+}
+.container {
+   max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-inline-start: 0;
+    list-style: none;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+
+}
+
+/* logo and navigation */
+
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+
+}
+
+.nav-item {
+    padding: 16px 35px 20px 0px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(84, 84, 84, 1);
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+}
+
+div.logo {
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+a.logo {
+    text-decoration: none;
+}
+
+.logo__main {
+
+    font-family: "Georgia";
+    font-style: normal;
+    font-size: 32px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: rgba(84, 84, 84, 1);
+}
+
+.logo-under {
+    margin-left: 4px;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    color:  rgba(41, 41, 41, 1);
+    padding-top: 10px;
+}
+
+.nav-link.active {
+    color: rgba(41, 41, 41, 1);
+    display: flex;
+    border-bottom: 3px solid #f1cdb3;
+}
+
+.nav-link:hover {
+    color: rgba(41, 41, 41, 1);
+}
+
+/* friends */
+
+.friends {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    background-color: rgba(246, 246, 246, 1);
+    ;
+}
+
+.friends-title {
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: rgba(84, 84, 84, 1);
+    margin: 0 auto;
+    max-width: 400px;
+    /* text-align: center; */
+padding-bottom: 45px;
+display: flex;
+align-items: center;
+text-align:center
+}
+
+
+
+.slider-cards {
+    display: flex;
+    gap:40px;
+    flex-wrap: wrap;
+}
+
+.friends-slider {
+  padding: 45px 40px;
+}
+
+.friends-card {
+    width: 270px;
+    height: 435px;
+    background-color: rgba(250, 250, 250, 1);
+}
+
+.friends-card:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    background-color: #FAFAFA;
+    border-radius: 9px;
+}
+
+.friends-card:hover .friends-button {
+    color: rgba(241, 205, 179, 1);
+}
+
+.friends-name {
+    padding: 30px 0;
+    color: rgba(84, 84, 84, 1);
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+    text-align: center;
+
+}
+
+.friends-link {
+    text-decoration: none;
+}
+
+.friends-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 45px;
+    margin: 0 auto;
+    border: 2px solid rgba(241, 205, 179, 1);
+    border-radius: 100px;
+    background-color: rgba(250, 250, 250, 1);
+    width: 187px;
+    cursor: pointer;
+}
+
+
+.friends-img {
+    border-radius: 9px 9px 0 0;
+}
+
+.friends-rest {
+    background-color: rgba(241, 205, 179, 1);
+    display: flex;
+    align-items: center;
+    padding: 15px 45px;
+    width: 262px;
+    border-radius: 100px;
+    margin: 0 auto;
+    border: none;
+    /* height: 52px; */
+    gap: 10px;
+
+
+
+}
+
+.friends-rest a {
+    font-weight: 400;
+    text-decoration: none;
+    color: rgba(41, 41, 41, 1);
+    font-family: 'Georgia', sans-serif;
+    font-size: 17px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    padding: 0;
+
+}
+
+.friends-rest:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.friends-arrow, .page-number {
+    width: 52px;
+    height: 52px;
+    padding: 23px 19px;
+    align-items: center;
+    display: flex;
+    border: 2px solid rgba(241, 205, 179, 1);
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    justify-content: center;
+    font-size: 20px;
+}
+.friends-arrow:hover{
+color: rgba(241, 205, 179, 1);
+cursor: pointer;
+}
+.page-number{
+    background-color: rgba(241, 205, 179, 1);
+    color:  rgba(41, 41, 41, 1);
+    font-family: 'Georgia';
+}
+
+
+
+.arrows{
+    display: flex;
+    margin: 0 auto;
+    gap: 20px;
+}
+.disabled:hover{
+cursor: initial;
+color: #C6C6C6;}
+
+/* footer */
+
+footer {
+    background-image: url('../../assets/images/footer-gradient-background.png');
+    background-size: cover;
+
+}
+
+
+.footer-wraper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 155px;
+    padding-top: 40px;
+}
+
+/* .footer-item{
+    padding-bottom: 60px;
+} */
+.questions1,
+.questions2 {
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 130%;
+
+    letter-spacing: 0.06em;
+    color: white;
+}
+
+.questions1 {
+    padding-bottom: 40px;
+}
+
+.questions2 {
+    padding-bottom: 32px;
+}
+
+.footer-link {
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: rgba(241, 205, 179, 1);
+    text-decoration: none;
+
+}
+
+.e-mail {
+    padding-bottom: 40px;
+}
+
+.boston {
+    padding-bottom: 32px;
+}
+
+.footer-icon {
+
+    display: flex;
+
+    margin: 0;
+
+}
+
+.fotter-title {
+    padding-left: 20px;
+
+}
+
+.footer-link.boston {
+    padding-left: 20px;
+}
+
+.fotter-title.boston {
+    padding-left: 0;
+}
