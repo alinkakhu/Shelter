@@ -18,7 +18,7 @@
 <body>
     <div class="back">
 <header class="header" id="header">
-    <div class="container">
+    <div class="container open">
 
 
 
@@ -30,7 +30,10 @@
                 <div class="logo-under">Shelter for pets in Boston</div>
             </div>
 
-            <nav >
+            <button class="burger" data-menu-button>
+               <img src="../../assets/images/Burger.png" alt=""></button>
+
+            <nav data-menu>
                 <ul class="nav-list">
                     <li class="nav-item active"><a href="#" class="nav-link active" >About the shelter</a></li>
                     <li class="nav-item"><a href="../pets/index.html" class="nav-link" >Our pets</a></li>
@@ -39,6 +42,7 @@
                 </ul>
             </nav>
         </div>
+        <div class="overlay"></div>
     </div>
 </header>
 
@@ -49,13 +53,27 @@
     <div class="container">
 
         <div class="only-wrapper">
+            <div class="additional">
         <h2 class="hero__title">Not only people need a house</h2>
         <p class="hero-subtitle">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more
         than anybody else in the world, you will see!</p>
-        <button class="hero__button" type="button"><a href="#friends">Make a friend</a> </button></div>
+        <button class="hero__button" type="button"><a href="#friends">Make a friend</a> </button></div><div></div>
+
+
         <div class="hero-puppy">
-            <img src="../../assets/images/start-screen-puppy.png" alt="puppy" />
+            <picture >
+                <source src="../../assets/images/start-screen-puppy-mobile.png " media="(max-width: 768px )"
+                    srcset="../../assets/images/start-screen-puppy-mobile.png ">
+                <!-- <source srcset="./images/team-tablet1.jpg 1x, ./images/team-tablet1 2x.jpg 2x"
+                                media="(min-width: 768px) and (max-width: 1199px)" /> -->
+                <source src="../../assets/images/start-screen-puppy-tablet.png" media="(min-width: 768px) and (max-width: 1279px)"
+                    srcset="../../assets/images/start-screen-puppy-tablet.png ">
+                <source srcset="../../assets/images/start-screen-puppy.png" media="(min-width: 1280px)" />
+                <img src="../../assets/images/start-screen-puppy.png" alt="puppy" />
+            </picture>
+
         </div>
+
     </div>
 </section></div>
 
@@ -96,7 +114,7 @@ are looking for a house</h3>
 <div class="friends-slider">
 
 
-<button class="friends-arrow">
+<button class="friends-arrow left">
     <svg class="arrow" width="14" height="6">
         <use href="../../assets/icons/symbol-defs.svg#icon-Arrow"></use>
     </svg>
@@ -113,7 +131,7 @@ are looking for a house</h3>
 </a>
 </div>
 
-<div class="friends-card">
+<div class="friends-card hidden">
 
     <a href="" class="friends-link">
         <img src="../../assets/images/pets-jennifer.png" class="friends-img" alt="Jennifer">
@@ -122,7 +140,7 @@ are looking for a house</h3>
     </a>
 </div>
 
-<div class="friends-card">
+<div class="friends-card hidden">
 
     <a href="" class="friends-link">
         <img src="../../assets/images/pets-woody.png" class="friends-img" alt="Woody">
@@ -131,11 +149,14 @@ are looking for a house</h3>
     </a>
 </div>
 
-
-
 </div>
 
-<button class="friends-arrow">
+
+
+
+
+
+<button class="friends-arrow right">
     <svg class="arrow" width="14" height="6">
         <use href="../../assets/icons/symbol-defs.svg#icon-Arrow-1"></use>
     </svg>
@@ -156,7 +177,7 @@ are looking for a house</h3>
 <h3 class="help-title">How you can help
 our shelter</h3>
 
-<div class="first-row">
+<div class="help-wrapper">
 
     <div class="icon">
 <svg class="help-icon" width="60" height="60">
@@ -188,9 +209,9 @@ our shelter</h3>
     <use href="../../assets/icons/symbol-defs.svg#icon-shampoos"></use>
 </svg>
 <h4 class="help-subtitle">Shampoos</h4></div>
-</div>
 
-<div class="second-row">
+
+
 
     <div class="icon">
     <svg class="help-icon" width="60" height="60">
@@ -217,7 +238,7 @@ our shelter</h3>
         <use href="../../assets/icons/symbol-defs.svg#icon-sleeping-area"></use>
     </svg>
     <h4 class="help-subtitle">Sleeping areas</h4></div>
-</div>
+
     </div>
 </section>
 
@@ -225,9 +246,14 @@ our shelter</h3>
     <div class="container">
         <div class="donation-wrapper">
 
-<div class="dog-image">
-    <img src="../../assets/images/donation-dog.png" alt="sad dog">
-</div>
+<picture class="dog-image">
+    <source src="../../assets/images/donation-dog-mobile.png " media="(max-width: 768px )"
+        srcset="../../assets/images/donation-dog-mobile.png ">
+    <!-- <source srcset="./images/team-tablet1.jpg 1x, ./images/team-tablet1 2x.jpg 2x"
+                    media="(min-width: 768px) and (max-width: 1199px)" /> -->
+    <source srcset="../../assets/images/donation-dog.png 1x" media="(min-width: 768px)" />
+    <img src="../../assets/images/donation-dog.png" alt="puppy" />
+</picture>
 
 <div class="donation-information">
 <h3 class="donation-title">You can also make a donation</h3>
@@ -291,12 +317,12 @@ in faucibus.</p>
 </div>
 
 
-    <img src="../../assets/images/footer-puppy.png" alt="">
+    <img class="puppyL" src="../../assets/images/footer-puppy.png" alt="">
 
     </div>
 </div>
 
 </footer>
-
+<script src="script.js"></script>
 </body>
 </html>
