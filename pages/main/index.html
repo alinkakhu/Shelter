@@ -30,13 +30,30 @@
                 <div class="logo-under">Shelter for pets in Boston</div>
             </div>
 
-            <button class="burger" data-menu-button>
-               <img src="../../assets/images/Burger.png" alt=""></button>
 
-            <nav data-menu>
+
+            <nav class="screen">
                 <ul class="nav-list">
                     <li class="nav-item active"><a href="#" class="nav-link active" >About the shelter</a></li>
                     <li class="nav-item"><a href="../pets/index.html" class="nav-link" >Our pets</a></li>
+                    <li class="nav-item"><a href="#help" class="nav-link">Help the shelter</a></li>
+                    <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+        <div class="header-menu-mobile">
+
+
+            <button class="burger" data-menu-button>
+                <img src="../../assets/images/Burger.png" alt=""></button>
+
+            <nav class="mobile" data-menu>
+                <ul class="nav-list">
+                    <li class="nav-item active"><a href="#" class="nav-link active">About the shelter</a></li>
+                    <li class="nav-item"><a href="../pets/index.html" class="nav-link">Our pets</a></li>
                     <li class="nav-item"><a href="#help" class="nav-link">Help the shelter</a></li>
                     <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
                 </ul>
@@ -50,31 +67,36 @@
 <main>
 
     <section class="hero" id="hero">
-    <div class="container">
+    <div class="container hero">
 
         <div class="only-wrapper">
             <div class="additional">
         <h2 class="hero__title">Not only people need a house</h2>
         <p class="hero-subtitle">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more
         than anybody else in the world, you will see!</p>
-        <button class="hero__button" type="button"><a href="#friends">Make a friend</a> </button></div><div></div>
+        <button class="hero__button" type="button"><a href="#friends">Make a friend</a> </button></div></div>
 
-
-        <div class="hero-puppy">
-            <picture >
+<div class="hero-puppy">
+            <!-- <picture>
                 <source src="../../assets/images/start-screen-puppy-mobile.png " media="(max-width: 768px )"
                     srcset="../../assets/images/start-screen-puppy-mobile.png ">
                 <!-- <source srcset="./images/team-tablet1.jpg 1x, ./images/team-tablet1 2x.jpg 2x"
-                                media="(min-width: 768px) and (max-width: 1199px)" /> -->
-                <source src="../../assets/images/start-screen-puppy-tablet.png" media="(min-width: 768px) and (max-width: 1279px)"
+                                        media="(min-width: 768px) and (max-width: 1199px)" /> -->
+                <!-- <source src="../../assets/images/start-screen-puppy-tablet.png"
+                    media="(min-width: 768px) and (max-width: 1279px)"
                     srcset="../../assets/images/start-screen-puppy-tablet.png ">
                 <source srcset="../../assets/images/start-screen-puppy.png" media="(min-width: 1280px)" />
                 <img src="../../assets/images/start-screen-puppy.png" alt="puppy" />
-            </picture>
+            </picture> -->
 
-        </div>
+            <img src="../../assets/images/start-screen-puppy.png" class="only-puppy" alt="">
+
+</div>
+    </div>
+
 
     </div>
+
 </section></div>
 
 <section class="about">
@@ -121,10 +143,10 @@ are looking for a house</h3>
 </button>
 
 <div class="slider-cards">
+<!--
+<div class="friends-card"> -->
 
-<div class="friends-card">
-
-<a href="" class="friends-link">
+<!-- <a href="" class="friends-link">
 <img src="../../assets/images/pets-katrine.png" class="friends-img" alt="Katrine">
 <h4 class="friends-name">Katrine</h4>
 <button class="friends-button">Learn more</button>
@@ -140,14 +162,14 @@ are looking for a house</h3>
     </a>
 </div>
 
-<div class="friends-card hidden">
+<div class="friends-card hidden tablet">
 
     <a href="" class="friends-link">
         <img src="../../assets/images/pets-woody.png" class="friends-img" alt="Woody">
         <h4 class="friends-name">Woody</h4>
         <button class="friends-button">Learn more</button>
-    </a>
-</div>
+    </a> -->
+<!-- </div> -->
 
 </div>
 
@@ -165,10 +187,12 @@ are looking for a house</h3>
 </div>
 
 <button class="friends-rest">
-    <a href="">Get to know the rest</a>
+    <a href="../pets/index.html">Get to know the rest</a>
 </button>
 
 </div>
+</div>
+<div class='friends-overlay'></div>
 </section>
 
 <section class="help" id="help">

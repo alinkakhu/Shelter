@@ -1,6 +1,10 @@
-  const body = document.querySelector('body');
+const body = document.querySelector('body');
 const html = document.querySelector('html');
+const overlay = document.querySelector('.overlay');
+const sliderCards = document.querySelector('.slider-cards');
 const friendsOverlay = document.querySelector('.friends-overlay');
+
+
 (() => {
   const menuBtnRef = document.querySelector('[data-menu-button]');
     const mobileMenuRef = document.querySelector('[data-menu]');
@@ -20,8 +24,7 @@ headerMenu.classList.toggle('is-open')
     body.classList.toggle('is-open')
 html.classList.toggle('is-open')
   });
-
-  overlay.addEventListener('click', () => {
+    overlay.addEventListener('click', () => {
 mobileMenuRef.classList.remove('is-open')
     headerMenu.classList.remove('is-open');
      containerIsOpen.classList.remove('is-open')
@@ -32,13 +35,9 @@ html.classList.remove('is-open')
     })
 })();
 
-// let myRequest = new Request("/pets.json");
-// fetch(myRequest).then(function (resp) {
-//   return resp.json()
-// }).then(function (data) {
-//   console.log(data)
-// })
 
+
+// pagination
 
 const pets =[
   {
@@ -130,36 +129,36 @@ const pets =[
     "parasites": ["lice", "fleas"]
   }
 ]
+
+
+
 const right = document.querySelector('.friends-arrow.right')
-const left = document.querySelector('.friends-arrow.left')
-const sliderCards = document.querySelector('.slider-cards')
+const left = document.querySelector('.friends-arrow.left');
+const pageNumber = document.querySelector('.page-number')
+
 // let randomNumber = Math.floor(Math.random() * pets.length);
 let prevCards= [];
-const getRandom = () => Math.floor(Math.random() * 8)
+
 
 function generateRandomNumber() {
-let number = getRandom()
 
+  while (prevCards.length < 3) {
+    return Math.floor(Math.random() * pets.length);
 
-   if(prevCards.includes(number) ) {
-       number = getRandom()
-    }
-return number
   }
 
-
+}
 
 
 function generateCard(pets) {
   let gallery = [];
 
-
-  for (let i = 0; i < 3; i++){
+  for (let i = 0; i < 8; i++){
   let randomNumber = generateRandomNumber();
     let card = document.createElement('div');
 
     card.classList.add('friends-card');
-    sliderCards.append(card)
+sliderCards.appendChild(card)
 card.innerHTML =  `<a href="#" class="friends-link">
 <img src=${pets[randomNumber].img} class="friends-img" alt="${pets[randomNumber].name}">
 <h4 class="friends-name">${pets[randomNumber].name}</h4 >
@@ -192,8 +191,10 @@ card.innerHTML =  `<a href="#" class="friends-link">
       card.classList.add('tablet')
     }
 
-gallery.push(card)
-    prevCards.push(randomNumber);
+      gallery.push(card);
+
+
+
 }
 
 
@@ -206,21 +207,44 @@ gallery.push(card)
 
 
 }
+
+let page = 1;
 generateCard(pets)
 
+
 function pressRight() {
+    page++
+    pageNumber.textContent = page;
+    if (page > 1) {
+        left.removeAttribute('disabled')
+    }
   let previousCards = document.querySelectorAll('.friends-card');
   previousCards.forEach((card) => {
     card.remove()
   })
 
-  generateCard(pets);
+    generateCard(pets);
+
+}
+function pressLeft() {
+    if (page > 1) {
+        left.removeAttribute('disabled')
+        page--;
+        pageNumber.textContent = page;
+    }
+
+  let previousCards = document.querySelectorAll('.friends-card');
+  previousCards.forEach((card) => {
+    card.remove()
+  })
+
+    generateCard(pets);
+
 }
 
 
-
 right.addEventListener('click', pressRight)
-left.addEventListener('click', pressRight)
+left.addEventListener('click', pressLeft)
 
 const cards = document.querySelectorAll('.friends-card')
 
@@ -250,8 +274,3 @@ html.classList.remove('is-open')
 
     })
 }
-
-
-
-
-
