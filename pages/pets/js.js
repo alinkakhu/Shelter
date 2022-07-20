@@ -1,44 +1,12 @@
-const body = document.querySelector('body');
-const html = document.querySelector('html');
-const overlay = document.querySelector('.overlay');
-const sliderCards = document.querySelector('.slider-cards');
-const friendsOverlay = document.querySelector('.friends-overlay');
+  const pages = document.querySelector(".slider-cards");
+  const children = pages.children;
 
-
-(() => {
-  const menuBtnRef = document.querySelector('[data-menu-button]');
-    const mobileMenuRef = document.querySelector('[data-menu]');
-    const headerMenu = document.querySelector('.header-menu-mobile')
-  const containerIsOpen = document.querySelector('.open');
-  const overlay = document.querySelector('.overlay');
-
-  menuBtnRef.addEventListener('click', () => {
-    const expanded = menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
-
-    menuBtnRef.classList.toggle('is-open');
-    menuBtnRef.setAttribute('aria-expanded', !expanded);
-headerMenu.classList.toggle('is-open')
-    mobileMenuRef.classList.toggle('is-open');
-    containerIsOpen.classList.toggle('is-open')
-    overlay.classList.toggle('is-open');
-    body.classList.toggle('is-open')
-html.classList.toggle('is-open')
-  });
-    overlay.addEventListener('click', () => {
-mobileMenuRef.classList.remove('is-open')
-    headerMenu.classList.remove('is-open');
-     containerIsOpen.classList.remove('is-open')
-    overlay.classList.remove('is-open');
-    body.classList.remove('is-open')
-html.classList.remove('is-open')
-
-    })
-})();
-
-
-
-// pagination
-
+  const firstLeftButton = document.querySelector(".friends-arrow.arrow2");
+  const secondLefButton = document.querySelector(".friends-arrow.left");
+const firstRightfButton = document.querySelector(".friends-arrow.right");
+const secondRightButton = document.querySelector(".friends-arrow.arrow3");
+let gallery = [];
+let page = 0;
 const pets =[
   {
     "name": "Jennifer",
@@ -132,34 +100,13 @@ const pets =[
 
 
 
-const right = document.querySelector('.friends-arrow.right')
-const left = document.querySelector('.friends-arrow.left');
-const pageNumber = document.querySelector('.page-number')
-let cardsOnPage = 8;
-// let randomNumber = Math.floor(Math.random() * pets.length);
-let prevCards= [];
 
 
-function generateRandomNumber() {
-
-  while (prevCards.length < 3) {
-    return Math.floor(Math.random() * pets.length);
-
-  }
-
-}
-
-
-function generateCard(pets) {
-  let gallery = [];
-
-  for (let i = 0; i < 8; i++){
-  let randomNumber = generateRandomNumber();
-    let card = document.createElement('div');
-
-    card.classList.add('friends-card');
-sliderCards.appendChild(card)
-card.innerHTML =  `<a href="#" class="friends-link">
+    for (let i = 0; i < 48; i++) {
+        let randomNumber = Math.floor(Math.random() * 8)
+        let card = document.createElement('div');
+        card.classList.add('friends-card');
+        card.innerHTML = `<a href="#" class="friends-link">
 <img src=${pets[randomNumber].img} class="friends-img" alt="${pets[randomNumber].name}">
 <h4 class="friends-name">${pets[randomNumber].name}</h4 >
 <button class="friends-button">Learn more</button>
@@ -182,98 +129,94 @@ card.innerHTML =  `<a href="#" class="friends-link">
      </ul> </div></div>
    </div> `
 
-    card.addEventListener('click', (event) => showMore(event));
-    if (i === 1) {
-      card.classList.add('hidden')
-    }
-     else if (i === 2) {
-      card.classList.add('hidden');
-      card.classList.add('tablet')
+
+        gallery.push(card)
+
     }
 
-      gallery.push(card);
+
+const pageNumber =document.querySelector('.page-number')
 
 
-
-}
-
-
-
-
- return gallery
-
-
-
-
-
-}
-
-let page = 1;
-generateCard(pets)
-
-
-function pressRight() {
-    page++
-    pageNumber.textContent = page;
-    if (page > 1) {
-        left.removeAttribute('disabled')
-    }
-  let previousCards = document.querySelectorAll('.friends-card');
-  previousCards.forEach((card) => {
-    card.remove()
-  })
-
-    generateCard(pets);
-
-}
-function pressLeft() {
-    if (page > 1) {
-        left.removeAttribute('disabled')
-        page--;
-        pageNumber.textContent = page;
+    for (let i = 0; i < page + 8; i++) {
+        pages.append(gallery[i]);
     }
 
-  let previousCards = document.querySelectorAll('.friends-card');
-  previousCards.forEach((card) => {
-    card.remove()
-  })
-
-    generateCard(pets);
-
-}
 
 
+let pageNum = 1;
+
+firstRightfButton.addEventListener('click', () => {
+
+    if (pageNum == 6) {
+       firstRightfButton.setAttribute('disabled','');
+        secondRightButton.setAttribute('disabled', '');
+        return
+    }
+    if (pageNum > 1) {
+        firstLeftButton.removeAttribute('disabled');
+        secondLefButton.removeAttribute('disabled')
+    }
+    pageNum++;
+
+    pageNumber.textContent = pageNum;
+
+    page == gallery.length - 8 ? (page == 0) : (page += 6);
+pages.innerHTML=''
+    for (let i = page; i < page + 8; i++){
+        pages.append(gallery[i]);
+
+    }
+
+})
+
+secondLefButton.addEventListener('click', () => {
+    pageNum--;
+    pageNumber.textContent = pageNum;
+    if (pageNum < 6)
+    {
+        firstRightfButton.removeAttribute('disabled');
+        secondRightButton.removeAttribute('disabled');
+    }
+
+    if (pageNum = 1) {
+        firstLeftButton.setAttribute('disabled', '');
+        secondLefButton.setAttribute('disabled', '')
+    }
 
 
-right.addEventListener('click', pressRight)
-left.addEventListener('click', pressLeft)
 
-const cards = document.querySelectorAll('.friends-card')
-// show more
+  page == 0 ? page = gallery.length - 8 : (page -= 6);
+pages.innerHTML=''
+    for (let i = page; i < page + 8; i++){
+        pages.append(gallery[i]);
 
-function showMore(e) {
-  e.preventDefault()
-  let modal = e.target.closest('div').querySelector('.modal');
-  console.log(modal)
-  modal.classList.add('active');
+    }
+})
 
-  friendsOverlay.classList.add('is-open');
-body.classList.add('is-open')
-html.classList.add('is-open')
-  const closeBtn = modal.querySelector('.close');
-  closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    friendsOverlay.classList.remove('is-open');
-     body.classList.remove('is-open')
-html.classList.remove('is-open')
 
-  })
 
-   friendsOverlay.addEventListener('click', () => {
-        modal.classList.remove('active');
-    friendsOverlay.classList.remove('is-open');
-    body.classList.remove('is-open')
-html.classList.remove('is-open')
+firstLeftButton.addEventListener('click', () => {
+    pageNumber.textContent = 1;
 
-    })
-}
+    page == 0;
+    pages.innerHTML = '';
+
+    for (let i = page; i < page + 8; i++){
+        pages.append(gallery[i]);
+
+    }
+})
+
+secondRightButton.addEventListener('click', () => {
+    page == gallery.length;
+    pageNumber.textContent = 6
+    pages.innerHTML = '';
+    console.log('pressed')
+ for (let i = page; i < page + 8; i++){
+        pages.append(gallery[i]);
+
+    }
+
+
+})

@@ -182,7 +182,7 @@ card.innerHTML =  `<a href="#" class="friends-link">
 <li class='modal-item'><strong>Parasites:</strong>${pets[randomNumber].parasites}</li>
      </ul> </div></div>
    </div> `
-
+prevCards.push(randomNumber);
     card.addEventListener('click', (event) => showMore(event));
     if (i === 1) {
       card.classList.add('hidden')
@@ -193,7 +193,7 @@ card.innerHTML =  `<a href="#" class="friends-link">
     }
 
 gallery.push(card)
-    prevCards.push(randomNumber);
+
 }
 
 
@@ -223,6 +223,10 @@ right.addEventListener('click', pressRight)
 left.addEventListener('click', pressRight)
 
 const cards = document.querySelectorAll('.friends-card')
+
+
+
+// show more
 
 function showMore(e) {
   e.preventDefault()
