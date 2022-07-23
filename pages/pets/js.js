@@ -1,12 +1,44 @@
   const pages = document.querySelector(".slider-cards");
   const children = pages.children;
-
+const friendsOverlay = document.querySelector('.friends-overlay');
   const firstLeftButton = document.querySelector(".friends-arrow.arrow2");
   const secondLefButton = document.querySelector(".friends-arrow.left");
 const firstRightfButton = document.querySelector(".friends-arrow.right");
 const secondRightButton = document.querySelector(".friends-arrow.arrow3");
+const body = document.querySelector('body');
+const html = document.querySelector('html');
 let gallery = [];
 let page = 0;
+
+(() => {
+  const menuBtnRef = document.querySelector('[data-menu-button]');
+    const mobileMenuRef = document.querySelector('[data-menu]');
+    const headerMenu = document.querySelector('.header-menu-mobile')
+  const containerIsOpen = document.querySelector('.open');
+  const overlay = document.querySelector('.overlay');
+
+  menuBtnRef.addEventListener('click', () => {
+    const expanded = menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
+
+    menuBtnRef.classList.toggle('is-open');
+    menuBtnRef.setAttribute('aria-expanded', !expanded);
+headerMenu.classList.toggle('is-open')
+    mobileMenuRef.classList.toggle('is-open');
+    containerIsOpen.classList.toggle('is-open')
+    overlay.classList.toggle('is-open');
+    body.classList.toggle('is-open')
+html.classList.toggle('is-open')
+  });
+    overlay.addEventListener('click', () => {
+mobileMenuRef.classList.remove('is-open')
+    headerMenu.classList.remove('is-open');
+     containerIsOpen.classList.remove('is-open')
+    overlay.classList.remove('is-open');
+    body.classList.remove('is-open')
+html.classList.remove('is-open')
+
+    })
+})();
 const pets =[
   {
     "name": "Jennifer",
@@ -130,7 +162,8 @@ const pets =[
    </div> `
 
 
-        gallery.push(card)
+      gallery.push(card)
+
 
     }
 
@@ -139,7 +172,8 @@ const pageNumber =document.querySelector('.page-number')
 
 
     for (let i = 0; i < page + 8; i++) {
-        pages.append(gallery[i]);
+      pages.append(gallery[i]);
+
     }
 
 
@@ -147,6 +181,11 @@ const pageNumber =document.querySelector('.page-number')
 let pageNum = 1;
 
 firstRightfButton.addEventListener('click', () => {
+pageNum++;
+    pageNumber.textContent = pageNum;
+
+
+
 
     if (pageNum == 6) {
        firstRightfButton.setAttribute('disabled','');
@@ -157,11 +196,9 @@ firstRightfButton.addEventListener('click', () => {
         firstLeftButton.removeAttribute('disabled');
         secondLefButton.removeAttribute('disabled')
     }
-    pageNum++;
 
-    pageNumber.textContent = pageNum;
 
-    page == gallery.length - 8 ? (page == 0) : (page += 6);
+    page == gallery.length - 8 ? (page == 0) : (page += 8);
 pages.innerHTML=''
     for (let i = page; i < page + 8; i++){
         pages.append(gallery[i]);
@@ -173,20 +210,30 @@ pages.innerHTML=''
 secondLefButton.addEventListener('click', () => {
     pageNum--;
     pageNumber.textContent = pageNum;
+
+
+    // if (pageNum = 1) {
+    //     firstLeftButton.setAttribute('disabled', '');
+    //     secondLefButton.setAttribute('disabled', '');
+    //     return
+    // }
+
+
     if (pageNum < 6)
     {
         firstRightfButton.removeAttribute('disabled');
         secondRightButton.removeAttribute('disabled');
     }
 
-    if (pageNum = 1) {
+
+if (pageNum === 1) {
         firstLeftButton.setAttribute('disabled', '');
-        secondLefButton.setAttribute('disabled', '')
+        secondLefButton.setAttribute('disabled', '');
+        return
     }
 
 
-
-  page == 0 ? page = gallery.length - 8 : (page -= 6);
+  page == 0 ? page = gallery.length - 8 : (page -= 8);
 pages.innerHTML=''
     for (let i = page; i < page + 8; i++){
         pages.append(gallery[i]);
@@ -197,19 +244,27 @@ pages.innerHTML=''
 
 
 firstLeftButton.addEventListener('click', () => {
+  pageNum = 1;
     pageNumber.textContent = 1;
 
     page == 0;
-    pages.innerHTML = '';
+  pages.innerHTML = '';
+  firstLeftButton.setAttribute('disabled', '');
+        secondLefButton.setAttribute('disabled', '');
 
     for (let i = page; i < page + 8; i++){
         pages.append(gallery[i]);
 
-    }
+  }
+
+
 })
 
 secondRightButton.addEventListener('click', () => {
-    page == gallery.length;
+   firstRightfButton.setAttribute('disabled','');
+  secondRightButton.setAttribute('disabled', '');
+  pageNum = 6;
+  page == gallery.length;
     pageNumber.textContent = 6
     pages.innerHTML = '';
     console.log('pressed')
@@ -220,3 +275,38 @@ secondRightButton.addEventListener('click', () => {
 
 
 })
+
+// show more
+
+const friendsButton = document.querySelectorAll('.friends-button').forEach(function (btn) {
+
+  btn.addEventListener('click', showMore)
+})
+
+function showMore(e) {
+  console.log('show more')
+  e.preventDefault()
+  let modal = e.target.closest('div').querySelector('.modal');
+  console.log(modal)
+  modal.classList.add('active');
+
+  friendsOverlay.classList.add('is-open');
+body.classList.add('is-open')
+html.classList.add('is-open')
+  const closeBtn = modal.querySelector('.close');
+  closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    friendsOverlay.classList.remove('is-open');
+     body.classList.remove('is-open')
+html.classList.remove('is-open')
+
+  })
+
+   friendsOverlay.addEventListener('click', () => {
+        modal.classList.remove('active');
+    friendsOverlay.classList.remove('is-open');
+    body.classList.remove('is-open')
+html.classList.remove('is-open')
+
+    })
+}

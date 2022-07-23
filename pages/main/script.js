@@ -134,7 +134,8 @@ const right = document.querySelector('.friends-arrow.right')
 const left = document.querySelector('.friends-arrow.left')
 const sliderCards = document.querySelector('.slider-cards')
 // let randomNumber = Math.floor(Math.random() * pets.length);
-let prevCards= [];
+let prevCards = [];
+let prevPets = [];
 const getRandom = () => Math.floor(Math.random() * 8)
 
 function generateRandomNumber() {
@@ -150,19 +151,17 @@ return number
 
 
 
-function generateCard(pets) {
+function generateCard(tab) {
   let gallery = [];
 
-
-  for (let i = 0; i < 3; i++){
-  let randomNumber = generateRandomNumber();
-    let card = document.createElement('div');
+  tab.forEach((petindex) => {
+     let card = document.createElement('div');
 
     card.classList.add('friends-card');
     sliderCards.append(card)
 card.innerHTML =  `<a href="#" class="friends-link">
-<img src=${pets[randomNumber].img} class="friends-img" alt="${pets[randomNumber].name}">
-<h4 class="friends-name">${pets[randomNumber].name}</h4 >
+<img src=${pets[i].img} class="friends-img" alt="${pets[i].name}">
+<h4 class="friends-name">${pets[i].name}</h4 >
 <button class="friends-button">Learn more</button>
 </a>
 
@@ -170,51 +169,79 @@ card.innerHTML =  `<a href="#" class="friends-link">
  <button data-close-button class = 'close'>&times</button>
 
  <div class='modal-wrapper'>
-<img class='modal-img' src=${pets[randomNumber].img} alt=${pets[randomNumber].name}/>
+<img class='modal-img' src=${pets[petindex].img} alt=${pets[petindex].name}/>
 
-  <div class = 'modal-header'><h3 class = 'modal-name'>${pets[randomNumber].name}</h3><h4 class = 'modal-breed'>${pets[randomNumber].breed}</h4>
+  <div class = 'modal-header'><h3 class = 'modal-name'>${pets[petindex].name}</h3><h4 class = 'modal-breed'>${pets[petindex].breed}</h4>
 
-   <p class = 'modal-body'>${pets[randomNumber].description}</p>
+   <p class = 'modal-body'>${pets[i].description}</p>
      <ul class="charac">
-     <li class='modal-item'><strong>Age:</strong>${pets[randomNumber].age}</li>
-     <li class='modal-item'><strong>Inoculations:</strong>${pets[randomNumber].inoculations}</li>
-<li class='modal-item'><strong>Diseases:</strong>${pets[randomNumber].diseases}</li>
-<li class='modal-item'><strong>Parasites:</strong>${pets[randomNumber].parasites}</li>
+     <li class='modal-item'><strong>Age:</strong>${pets[petindex].age}</li>
+     <li class='modal-item'><strong>Inoculations:</strong>${pets[petindex].inoculations}</li>
+<li class='modal-item'><strong>Diseases:</strong>${pets[petindex].diseases}</li>
+<li class='modal-item'><strong>Parasites:</strong>${pets[petindex].parasites}</li>
      </ul> </div></div>
    </div> `
-prevCards.push(randomNumber);
-    card.addEventListener('click', (event) => showMore(event));
-    if (i === 1) {
-      card.classList.add('hidden')
-    }
-     else if (i === 2) {
-      card.classList.add('hidden');
-      card.classList.add('tablet')
-    }
+// prevCards.push(randomNumber);
+//     card.addEventListener('click', (event) => showMore(event));
+//     if (i === 1) {
+//       card.classList.add('hidden')
+//     }
+//      else if (i === 2) {
+//       card.classList.add('hidden');
+//       card.classList.add('tablet')
+//     }
 
 gallery.push(card)
-
-}
+  });
 
 
 
 
  return gallery
-
-
-
-
-
 }
-generateCard(pets)
+
+
+
+
+
+
+
 
 function pressRight() {
+
+  let petIndex;
+
+  while (prevPets.length == 3) {
+
+    petIndex = Math.floor(Math.random() * pets.length);
+
+    if (!prevPets.includes(petIndex)) {
+      prevPets.push(petIndex);
+    }
+  }
+
+  generateCard(prevPets);
+
+
   let previousCards = document.querySelectorAll('.friends-card');
   previousCards.forEach((card) => {
     card.remove()
   })
 
-  generateCard(pets);
+
+
+
+
+
+
+
+
+  //let previousCards = document.querySelectorAll('.friends-card');
+  //previousCards.forEach((card) => {
+  //  card.remove()
+  //})
+
+  //generateCard(pets);
 }
 
 
