@@ -133,35 +133,28 @@ const pets =[
 const right = document.querySelector('.friends-arrow.right')
 const left = document.querySelector('.friends-arrow.left')
 const sliderCards = document.querySelector('.slider-cards')
-// let randomNumber = Math.floor(Math.random() * pets.length);
+
 let prevCards = [];
 let prevPets = [];
-const getRandom = () => Math.floor(Math.random() * 8)
+let currentPets = [];
+let newView;
 
-function generateRandomNumber() {
-let number = getRandom()
+displayCards();
 
+function generateCard() {
 
-   if(prevCards.includes(number) ) {
-       number = getRandom()
-    }
-return number
-  }
+  removeOldCards();
 
-
-
-
-function generateCard(tab) {
   let gallery = [];
 
-  tab.forEach((petindex) => {
-     let card = document.createElement('div');
+  currentPets.forEach((petindex) => {
+    let card = document.createElement('div');
 
     card.classList.add('friends-card');
     sliderCards.append(card)
-card.innerHTML =  `<a href="#" class="friends-link">
-<img src=${pets[i].img} class="friends-img" alt="${pets[i].name}">
-<h4 class="friends-name">${pets[i].name}</h4 >
+    card.innerHTML = `<a href="#" class="friends-link">
+<img src=${pets[petindex].img} class="friends-img" alt="${pets[petindex].name}">
+<h4 class="friends-name">${pets[petindex].name}</h4 >
 <button class="friends-button">Learn more</button>
 </a>
 
@@ -173,7 +166,7 @@ card.innerHTML =  `<a href="#" class="friends-link">
 
   <div class = 'modal-header'><h3 class = 'modal-name'>${pets[petindex].name}</h3><h4 class = 'modal-breed'>${pets[petindex].breed}</h4>
 
-   <p class = 'modal-body'>${pets[i].description}</p>
+   <p class = 'modal-body'>${pets[petindex].description}</p>
      <ul class="charac">
      <li class='modal-item'><strong>Age:</strong>${pets[petindex].age}</li>
      <li class='modal-item'><strong>Inoculations:</strong>${pets[petindex].inoculations}</li>
@@ -181,21 +174,11 @@ card.innerHTML =  `<a href="#" class="friends-link">
 <li class='modal-item'><strong>Parasites:</strong>${pets[petindex].parasites}</li>
      </ul> </div></div>
    </div> `
-// prevCards.push(randomNumber);
-//     card.addEventListener('click', (event) => showMore(event));
-//     if (i === 1) {
-//       card.classList.add('hidden')
-//     }
-//      else if (i === 2) {
-//       card.classList.add('hidden');
-//       card.classList.add('tablet')
-//     }
 
-gallery.push(card)
-  });
+    gallery.push(card);
 
 
-
+  })
 
  return gallery
 }
@@ -207,50 +190,132 @@ gallery.push(card)
 
 
 
-function pressRight() {
+function preparePets() {
 
-  let petIndex;
+  // console.log("Prepare Pets for number: " + number);
 
-  while (prevPets.length == 3) {
+const mobile = window.matchMedia("(max-width: 767px)");
+  const tablet = window.matchMedia("(min-width: 768px) and (max-width: 1279px)");
+  const screenView = window.matchMedia("(min-width: 1280px)")
+
+
+  if (screenView.matches) {
+    if (currentPets.length == 3) {
+
+    prevPets = currentPets;
+    currentPets = [];
+    }
+
+     do {
+    console.log("Do while pets")
 
     petIndex = Math.floor(Math.random() * pets.length);
 
-    if (!prevPets.includes(petIndex)) {
-      prevPets.push(petIndex);
+    if (!prevPets.includes(petIndex) && !currentPets.includes(petIndex)) {
+      currentPets.push(petIndex);
+
     }
+  } while (currentPets.length < 3);
   }
 
-  generateCard(prevPets);
+  else if (tablet.matches) {
+    if (currentPets.length == 2) {
 
+    prevPets = currentPets;
+    currentPets = [];
+    }
+     do {
+    console.log("Do while pets")
 
-  let previousCards = document.querySelectorAll('.friends-card');
-  previousCards.forEach((card) => {
-    card.remove()
+    petIndex = Math.floor(Math.random() * pets.length);
+
+    if (!prevPets.includes(petIndex) && !currentPets.includes(petIndex)) {
+      currentPets.push(petIndex);
+
+    }
+  } while (currentPets.length < 2);
+  }
+
+  else if (mobile.matches) {
+    if (currentPets.length == 1) {
+
+    prevPets = currentPets;
+    currentPets = [];
+    }
+     do {
+    console.log("Do while pets")
+
+    petIndex = Math.floor(Math.random() * pets.length);
+
+    if (!prevPets.includes(petIndex) && !currentPets.includes(petIndex)) {
+      currentPets.push(petIndex);
+
+    }
+  } while (currentPets.length < 1);
+  }
+
+  prevPets.forEach((prevIndex) => {
+    console.log("Prev pet index: " + prevIndex )
   })
 
 
+  // do {
+  //   console.log("Do while pets")
+
+  //   petIndex = Math.floor(Math.random() * pets.length);
+
+  //   if (!prevPets.includes(petIndex) && !currentPets.includes(petIndex)) {
+  //     currentPets.push(petIndex);
+
+  //   }
+  // } while (currentPets.length < number);
+
+  currentPets.forEach((index) => {
+    console.log("Current pet index: " + index );
+  })
 
 
-
-
-
-
-
-  //let previousCards = document.querySelectorAll('.friends-card');
-  //previousCards.forEach((card) => {
-  //  card.remove()
-  //})
-
-  //generateCard(pets);
 }
 
 
 
-right.addEventListener('click', pressRight)
-left.addEventListener('click', pressRight)
+function displayCards() {
+
+  //  const mobile = window.matchMedia("(max-width: 767px)");
+  // const tablet = window.matchMedia("(min-width: 768px) and (max-width: 1279px)");
+  // const screenView = window.matchMedia("(min-width: 1280px)")
+//  if (screenView.matches) {
+//    newView = 3;
+//   }
+//   else if (tablet.matches) {
+//    newView = 2;
+//   } else if (mobile.matches) {
+//    newView = 1;
+//  }
+  preparePets()
+
+  generateCard();
+  const friendsButton = document.querySelectorAll('.friends-button').forEach(function (btn) {
+
+  btn.addEventListener('click', showMore)
+})
+
+
+}
+
+
+function removeOldCards() {
+  let previousCards = document.querySelectorAll('.friends-card');
+  previousCards.forEach((card) => {
+    card.remove()
+  })
+}
+
+
+right.addEventListener('click', displayCards)
+left.addEventListener('click', displayCards)
 
 const cards = document.querySelectorAll('.friends-card')
-
 
 
 // show more

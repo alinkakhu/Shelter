@@ -1,5 +1,5 @@
-  const pages = document.querySelector(".slider-cards");
-  const children = pages.children;
+const pages = document.querySelector(".slider-cards");
+
 const friendsOverlay = document.querySelector('.friends-overlay');
   const firstLeftButton = document.querySelector(".friends-arrow.arrow2");
   const secondLefButton = document.querySelector(".friends-arrow.left");
@@ -143,15 +143,11 @@ const pets =[
 <h4 class="friends-name">${pets[randomNumber].name}</h4 >
 <button class="friends-button">Learn more</button>
 </a>
-
  <div class= 'modal' id = 'modal'>
  <button data-close-button class = 'close'>&times</button>
-
  <div class='modal-wrapper'>
 <img class='modal-img' src=${pets[randomNumber].img} alt=${pets[randomNumber].name}/>
-
   <div class = 'modal-header'><h3 class = 'modal-name'>${pets[randomNumber].name}</h3><h4 class = 'modal-breed'>${pets[randomNumber].breed}</h4>
-
    <p class = 'modal-body'>${pets[randomNumber].description}</p>
      <ul class="charac">
      <li class='modal-item'><strong>Age:</strong>${pets[randomNumber].age}</li>
@@ -168,10 +164,24 @@ const pets =[
     }
 
 
+    const mobile = window.matchMedia("(max-width: 767px)");
+  const tablet = window.matchMedia("(min-width: 768px) and (max-width: 1279px)");
+  const screenView = window.matchMedia("(min-width: 1280px)")
+let number;
+
 const pageNumber =document.querySelector('.page-number')
+if (screenView.matches) {
+  number = 8;
+}
 
 
-    for (let i = 0; i < page + 8; i++) {
+else if (tablet.matches) {
+  number = 6;
+} else if (mobile.matches) {
+  number = 3;
+}
+for (let i = 0; i < page + number; i++) {
+
       pages.append(gallery[i]);
 
     }
@@ -198,12 +208,16 @@ pageNum++;
     }
 
 
-    page == gallery.length - 8 ? (page == 0) : (page += 8);
+    page == gallery.length - number ? (page == 0) : (page += number);
 pages.innerHTML=''
-    for (let i = page; i < page + 8; i++){
+    for (let i = page; i < page + number; i++){
         pages.append(gallery[i]);
 
-    }
+  }
+  const friendsButton = document.querySelectorAll('.friends-button').forEach(function (btn) {
+
+  btn.addEventListener('click', showMore)
+})
 
 })
 
@@ -233,12 +247,16 @@ if (pageNum === 1) {
     }
 
 
-  page == 0 ? page = gallery.length - 8 : (page -= 8);
+  page == 0 ? page = gallery.length - number : (page -= number);
 pages.innerHTML=''
-    for (let i = page; i < page + 8; i++){
+    for (let i = page; i < page + number; i++){
         pages.append(gallery[i]);
 
-    }
+  }
+  const friendsButton = document.querySelectorAll('.friends-button').forEach(function (btn) {
+
+  btn.addEventListener('click', showMore)
+})
 })
 
 
@@ -252,28 +270,38 @@ firstLeftButton.addEventListener('click', () => {
   firstLeftButton.setAttribute('disabled', '');
         secondLefButton.setAttribute('disabled', '');
 
-    for (let i = page; i < page + 8; i++){
+    for (let i = page; i < page + number; i++){
         pages.append(gallery[i]);
 
   }
+const friendsButton = document.querySelectorAll('.friends-button').forEach(function (btn) {
 
+  btn.addEventListener('click', showMore)
+})
 
 })
 
 secondRightButton.addEventListener('click', () => {
-   firstRightfButton.setAttribute('disabled','');
-  secondRightButton.setAttribute('disabled', '');
+
+  firstLeftButton.removeAttribute('disabled');
+  secondLefButton.removeAttribute('disabled');
+
+   firstRightfButton.setAttribute('disabled', '');
+        secondRightButton.setAttribute('disabled', '');
   pageNum = 6;
   page == gallery.length;
     pageNumber.textContent = 6
     pages.innerHTML = '';
     console.log('pressed')
- for (let i = page; i < page + 8; i++){
+ for (let i = page; i < page + number; i++){
         pages.append(gallery[i]);
 
     }
 
+const friendsButton = document.querySelectorAll('.friends-button').forEach(function (btn) {
 
+  btn.addEventListener('click', showMore)
+})
 })
 
 // show more

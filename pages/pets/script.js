@@ -39,7 +39,7 @@ html.classList.remove('is-open')
 
 // pagination
 
-const pets =[
+const pets = [
   {
     "name": "Jennifer",
     "img": "../../assets/images/jennifer.png",
@@ -128,40 +128,37 @@ const pets =[
     "diseases": ["deafness", "blindness"],
     "parasites": ["lice", "fleas"]
   }
-]
+];
 
 
-
-const right = document.querySelector('.friends-arrow.right')
-const left = document.querySelector('.friends-arrow.left');
+  const firstLeftButton = document.querySelector(".friends-arrow.arrow2");
+  const secondLefButton = document.querySelector(".friends-arrow.left");
+const firstRightfButton = document.querySelector(".friends-arrow.right");
+const secondRightButton = document.querySelector(".friends-arrow.arrow3");
 const pageNumber = document.querySelector('.page-number')
-let cardsOnPage = 8;
-// let randomNumber = Math.floor(Math.random() * pets.length);
-let prevCards= [];
+let numberPage = 1;
+
+let prevCards = [];
+let prevPets = [];
+let currentPets = [];
 
 
-function generateRandomNumber() {
+displayCards();
 
-  while (prevCards.length < 3) {
-    return Math.floor(Math.random() * pets.length);
+function generateCard() {
 
-  }
+  removeOldCards();
 
-}
-
-
-function generateCard(pets) {
   let gallery = [];
 
-  for (let i = 0; i < 8; i++){
-  let randomNumber = generateRandomNumber();
+  currentPets.forEach((petindex) => {
     let card = document.createElement('div');
 
     card.classList.add('friends-card');
-sliderCards.appendChild(card)
-card.innerHTML =  `<a href="#" class="friends-link">
-<img src=${pets[randomNumber].img} class="friends-img" alt="${pets[randomNumber].name}">
-<h4 class="friends-name">${pets[randomNumber].name}</h4 >
+    sliderCards.append(card)
+    card.innerHTML = `<a href="#" class="friends-link">
+<img src=${pets[petindex].img} class="friends-img" alt="${pets[petindex].name}">
+<h4 class="friends-name">${pets[petindex].name}</h4 >
 <button class="friends-button">Learn more</button>
 </a>
 
@@ -169,111 +166,187 @@ card.innerHTML =  `<a href="#" class="friends-link">
  <button data-close-button class = 'close'>&times</button>
 
  <div class='modal-wrapper'>
-<img class='modal-img' src=${pets[randomNumber].img} alt=${pets[randomNumber].name}/>
+<img class='modal-img' src=${pets[petindex].img} alt=${pets[petindex].name}/>
 
-  <div class = 'modal-header'><h3 class = 'modal-name'>${pets[randomNumber].name}</h3><h4 class = 'modal-breed'>${pets[randomNumber].breed}</h4>
+  <div class = 'modal-header'><h3 class = 'modal-name'>${pets[petindex].name}</h3><h4 class = 'modal-breed'>${pets[petindex].breed}</h4>
 
-   <p class = 'modal-body'>${pets[randomNumber].description}</p>
+   <p class = 'modal-body'>${pets[petindex].description}</p>
      <ul class="charac">
-     <li class='modal-item'><strong>Age:</strong>${pets[randomNumber].age}</li>
-     <li class='modal-item'><strong>Inoculations:</strong>${pets[randomNumber].inoculations}</li>
-<li class='modal-item'><strong>Diseases:</strong>${pets[randomNumber].diseases}</li>
-<li class='modal-item'><strong>Parasites:</strong>${pets[randomNumber].parasites}</li>
+     <li class='modal-item'><strong>Age:</strong>${pets[petindex].age}</li>
+     <li class='modal-item'><strong>Inoculations:</strong>${pets[petindex].inoculations}</li>
+<li class='modal-item'><strong>Diseases:</strong>${pets[petindex].diseases}</li>
+<li class='modal-item'><strong>Parasites:</strong>${pets[petindex].parasites}</li>
      </ul> </div></div>
    </div> `
 
-    card.addEventListener('click', (event) => showMore(event));
-    if (i === 1) {
-      card.classList.add('hidden')
-    }
-     else if (i === 2) {
-      card.classList.add('hidden');
-      card.classList.add('tablet')
-    }
-
-      gallery.push(card);
+    gallery.push(card);
 
 
-
-}
-
-
-
+  })
 
  return gallery
+}
 
 
+
+//  function generatePreviousCard() {
+// removeOldCards()
+
+// let leftGallery = []
+//    let newArr = prevPets.slice(-8);
+//    console.log(newArr)
+//   newArr.forEach((petindex) => {
+//       let card = document.createElement('div');
+
+//       card.classList.add('friends-card');
+//       sliderCards.append(card)
+//       card.innerHTML = `<a href="#" class="friends-link">
+// <img src=${pets[petindex].img} class="friends-img" alt="${pets[petindex].name}">
+// <h4 class="friends-name">${pets[petindex].name}</h4 >
+// <button class="friends-button">Learn more</button>
+// </a>
+
+//  <div class= 'modal' id = 'modal'>
+//  <button data-close-button class = 'close'>&times</button>
+
+//  <div class='modal-wrapper'>
+// <img class='modal-img' src=${pets[petindex].img} alt=${pets[petindex].name}/>
+
+//   <div class = 'modal-header'><h3 class = 'modal-name'>${pets[petindex].name}</h3><h4 class = 'modal-breed'>${pets[petindex].breed}</h4>
+
+//    <p class = 'modal-body'>${pets[petindex].description}</p>
+//      <ul class="charac">
+//      <li class='modal-item'><strong>Age:</strong>${pets[petindex].age}</li>
+//      <li class='modal-item'><strong>Inoculations:</strong>${pets[petindex].inoculations}</li>
+// <li class='modal-item'><strong>Diseases:</strong>${pets[petindex].diseases}</li>
+// <li class='modal-item'><strong>Parasites:</strong>${pets[petindex].parasites}</li>
+//      </ul> </div></div>
+//    </div> `
+//       leftGallery.push(card)
+//     })
+//     return leftGallery
+// }
+
+function preparePets() {
+
+  // console.log("Prepare Pets for number: " + number);
+
+// const mobile = window.matchMedia("(max-width: 767px)");
+//   const tablet = window.matchMedia("(min-width: 768px) and (max-width: 1279px)");
+  // const screenView = window.matchMedia("(min-width: 1280px)")
+
+
+
+
+console.log(currentPets)
+ if (currentPets.length == 8) {
+    currentPets = [];
+    }
+
+     do {
+    console.log("Do while pets")
+
+    petIndex = Math.floor(Math.random() * pets.length);
+
+    if (!currentPets.includes(petIndex)) {
+      currentPets.push(petIndex);
+      prevPets.push(petIndex);
+
+
+    }
+  } while (currentPets.length < 8);
+  }
+
+
+
+
+
+function displayCards() {
+
+
+  preparePets()
+
+  generateCard();
 
 
 
 }
 
-let page = 1;
-generateCard(pets)
 
-
-function pressRight() {
-    page++
-    pageNumber.textContent = page;
-    if (page > 1) {
-        left.removeAttribute('disabled')
-    }
+function removeOldCards() {
   let previousCards = document.querySelectorAll('.friends-card');
   previousCards.forEach((card) => {
     card.remove()
   })
 
-    generateCard(pets);
-
 }
-function pressLeft() {
-    if (page > 1) {
-        left.removeAttribute('disabled')
-        page--;
-        pageNumber.textContent = page;
+
+
+
+const arrows = document.querySelector('.arrows')
+arrows.addEventListener('click', arrowClickHandler);
+
+function arrowClickHandler(e) {
+  console.log(e.target)
+  if (e.target.classList.contains('right')) {
+    displayCards();
+    numberPage++;
+    console.log(prevPets)
+    pageNumber.textContent = numberPage;
+firstLeftButton.removeAttribute('disabled');
+      secondLefButton.removeAttribute('disabled');
+
+    if (numberPage === 6) {
+firstRightfButton.setAttribute('disabled','');
+      secondRightButton.setAttribute('disabled', '');
+
     }
 
-  let previousCards = document.querySelectorAll('.friends-card');
-  previousCards.forEach((card) => {
-    card.remove()
-  })
+  }
 
-    generateCard(pets);
+   if (e.target.classList.contains('arrow3')) {
+    displayCards();
 
-}
+    pageNumber.textContent = 6;
+     numberPage = 6;
+
+firstRightfButton.setAttribute('disabled','');
+      secondRightButton.setAttribute('disabled', '');
+firstLeftButton.removeAttribute('disabled');
+      secondLefButton.removeAttribute('disabled');
+
+
+  }
+
+  if (e.target.classList.contains('left')) {
+generatePreviousCard()
+
+    numberPage--;
+    pageNumber.textContent = numberPage;
+firstRightfButton.removeAttribute('disabled');
+      secondRightButton.removeAttribute('disabled');
+
+    if (numberPage === 1) {
+firstLeftButton.setAttribute('disabled','');
+      secondLefButton.setAttribute('disabled', '');
+
+
+    }
+
+  }
+
+  if (e.target.classList.contains('arrow2')) {
+    displayCards();
+    numberPage = 1;
+    pageNumber.textContent = numberPage;
+firstRightfButton.removeAttribute('disabled');
+      secondRightButton.removeAttribute('disabled');
+
+firstLeftButton.setAttribute('disabled','');
+      secondLefButton.setAttribute('disabled', '');
 
 
 
 
-right.addEventListener('click', pressRight)
-left.addEventListener('click', pressLeft)
-
-const cards = document.querySelectorAll('.friends-card')
-// show more
-
-function showMore(e) {
-  e.preventDefault()
-  let modal = e.target.closest('div').querySelector('.modal');
-  console.log(modal)
-  modal.classList.add('active');
-
-  friendsOverlay.classList.add('is-open');
-body.classList.add('is-open')
-html.classList.add('is-open')
-  const closeBtn = modal.querySelector('.close');
-  closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    friendsOverlay.classList.remove('is-open');
-     body.classList.remove('is-open')
-html.classList.remove('is-open')
-
-  })
-
-   friendsOverlay.addEventListener('click', () => {
-        modal.classList.remove('active');
-    friendsOverlay.classList.remove('is-open');
-    body.classList.remove('is-open')
-html.classList.remove('is-open')
-
-    })
+  }
 }
